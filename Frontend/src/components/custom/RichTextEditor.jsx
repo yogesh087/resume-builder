@@ -58,13 +58,13 @@ function RichTextEditor({ onRichTextEditorChange, index, resumeInfo }) {
   return (
     <div>
       <div className="flex justify-between my-2">
-        <label className="text-xs">Summery</label>
+        <label className="text-xs">Summary</label>
         <Button
           variant="outline"
           size="sm"
           onClick={GenerateSummaryFromAI}
           disabled={loading}
-          className="flex gap-2 border-primary text-primary"
+          className="flex gap-2  border-blue-500 text-blue-500"
         >
           {loading ? (
             <LoaderCircle className="animate-spin" />

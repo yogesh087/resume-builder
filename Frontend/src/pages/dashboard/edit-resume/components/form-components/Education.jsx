@@ -77,7 +77,7 @@ function Education({ resumeInfo, enanbledNext }) {
   };
 
   return (
-    <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
+    <div className="p-5 shadow-lg rounded-lg border-black-300 border-2 mt-10">
       <h2 className="font-bold text-lg">Education</h2>
       <p>Add Your educational details</p>
 
@@ -165,7 +165,7 @@ function Education({ resumeInfo, enanbledNext }) {
           <Button
             variant="outline"
             onClick={AddNewEducation}
-            className="text-primary"
+            // className="text-primary"
           >
             {" "}
             + Add More Education
@@ -173,7 +173,7 @@ function Education({ resumeInfo, enanbledNext }) {
           <Button
             variant="outline"
             onClick={RemoveEducation}
-            className="text-primary"
+            // className="text-primary"
           >
             {" "}
             - Remove

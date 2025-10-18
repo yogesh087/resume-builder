@@ -77,7 +77,7 @@ function Skills({ resumeInfo, enanbledNext }) {
     }
   };
   return (
-    <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
+    <div className="p-5 shadow-lg rounded-lg border-black-300 border-2 mt-10">
       <h2 className="font-bold text-lg">Skills</h2>
       <p>Add Your top professional key skills</p>
 
@@ -108,7 +108,7 @@ function Skills({ resumeInfo, enanbledNext }) {
           <Button
             variant="outline"
             onClick={AddNewSkills}
-            className="text-primary"
+            
           >
             {" "}
             + Add More Skill
@@ -116,7 +116,7 @@ function Skills({ resumeInfo, enanbledNext }) {
           <Button
             variant="outline"
             onClick={RemoveSkills}
-            className="text-primary"
+            // className="text-primary"
           >
             {" "}
             - Remove

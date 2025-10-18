@@ -10,7 +10,7 @@ import { AIChatSession } from "@/Services/AiModel";
 import { updateThisResume } from "@/Services/resumeAPI";
 
 const prompt =
-  "Job Title: {jobTitle} , Depends on job title give me list of  summery for 3 experience level, Mid Level and Freasher level in 3 -4 lines in array format, With summery and experience_level Field in JSON Format";
+  "Job Title: {jobTitle} , Depends on job title give me list of  summary for 3 experience level, Mid Level and Freasher level in 3 -4 lines in array format, With summary and experience_level Field in JSON Format";
 function Summary({ resumeInfo, enanbledNext, enanbledPrev }) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false); // Declare the undeclared variable using useState
@@ -87,7 +87,7 @@ function Summary({ resumeInfo, enanbledNext, enanbledPrev }) {
 
   return (
     <div>
-      <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
+      <div className="p-5 shadow-lg rounded-lg border-black-300 border-2 mt-10">
         <h2 className="font-bold text-lg">Summary</h2>
         <p>Add Summary for your job title</p>
 
@@ -99,7 +99,7 @@ function Summary({ resumeInfo, enanbledNext, enanbledPrev }) {
               onClick={() => GenerateSummeryFromAI()}
               type="button"
               size="sm"
-              className="border-primary text-primary flex gap-2"
+              className=  "flex gap-2 border-blue-500 text-blue-500"
             >
               <Sparkles className="h-4 w-4" /> Generate from AI
             </Button>

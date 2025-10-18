@@ -101,7 +101,7 @@ function Experience({ resumeInfo, enanbledNext, enanbledPrev }) {
   };
   return (
     <div>
-      <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
+      <div className="p-5 shadow-lg rounded-lg border-black-300 border-2 mt-10">
         <h2 className="font-bold text-lg">Experience</h2>
         <p>Add Your Previous Job Experience</p>
         <div>
@@ -204,7 +204,7 @@ function Experience({ resumeInfo, enanbledNext, enanbledPrev }) {
           <Button
             onClick={addExperience}
             variant="outline"
-            className="text-primary"
+            // className="text-primary"
           >
             + Add {resumeInfo?.experience?.length > 0 ? "more" : null}{" "}
             Experience

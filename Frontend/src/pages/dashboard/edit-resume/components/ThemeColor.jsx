@@ -18,26 +18,16 @@ import { updateThisResume } from "@/Services/resumeAPI";
 function ThemeColor({ resumeInfo }) {
   const dispatch = useDispatch();
   const colors = [
-    "#FF5733",
-    "#33FF57",
-    "#3357FF",
-    "#FF33A1",
-    "#A133FF",
-    "#33FFA1",
-    "#FF7133",
-    "#71FF33",
-    "#7133FF",
-    "#FF3371",
-    "#33FF71",
-    "#3371FF",
-    "#A1FF33",
-    "#33A1FF",
-    "#FF5733",
-    "#5733FF",
-    "#33FF5A",
-    "#5A33FF",
-    "#FF335A",
-    "#335AFF",
+    "#1A1A1A", // Charcoal (classic dark gray)
+    "#2C3E50", // Navy Blue (corporate tone)
+    "#34495E", // Steel Blue (neutral professional)
+    "#4A4A4A", // Graphite Gray
+    "#3E5C76", // Muted Slate Blue
+    "#566573", // Slate Gray
+    "#5D6D7E", // Cool Gray
+    "#6C757D", // Modern Gray
+    "#212F3D", // Deep Blue-Gray
+    "#7B8FA1", // Soft Slate
   ];
 
   const [selectedColor, setSelectedColor] = useState();

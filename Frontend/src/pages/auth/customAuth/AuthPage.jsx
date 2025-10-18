@@ -16,10 +16,10 @@ function AuthPage() {
   const [isSignUp, setIsSignUp] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [signUpError, setSignUpError] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [signInError, setSignInError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSignInSubmit = async (event) => {
@@ -29,7 +29,7 @@ function AuthPage() {
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email.value)) {
-      setError("Please enter a valid email address.");
+      setSignInError("Please enter a valid email address.");
       return;
     }
 
@@ -40,17 +40,12 @@ function AuthPage() {
     };
 
     try {
-      console.log("Login Started in Frontend");
       const user = await loginUser(data);
-      console.log("Login Completed");
-
       if (user?.statusCode === 200) {
         navigate("/");
       }
-      console.log(user);
     } catch (error) {
-      setSignInError(error.message);
-      console.log("Login Failed");
+      setSignInError(error.message || "Login failed.");
     } finally {
       setLoading(false);
     }
@@ -61,15 +56,13 @@ function AuthPage() {
     event.preventDefault();
     const { fullname, email, password } = event.target.elements;
 
-    // Simple email validation
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email.value)) {
-      setError("Please enter a valid email address.");
+      setSignUpError("Please enter a valid email address.");
       return;
     }
 
     setLoading(true);
-    console.log("User Registration Started");
     const data = {
       fullName: fullname.value,
       email: email.value,
@@ -78,21 +71,19 @@ function AuthPage() {
     try {
       const response = await registerUser(data);
       if (response?.statusCode === 201) {
-        console.log("User Registration Started");
         handleSignInSubmit(event);
       }
     } catch (error) {
-      console.log("User Registration Failed");
-      setSignUpError(error.message);
+      setSignUpError(error.message || "Registration failed.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-6 bg-gradient-to-r from-green-400 to-purple-500">
+    <div className="flex flex-col items-center justify-center min-h-screen p-6 bg-gradient-to-br from-gray-100 via-blue-50 to-gray-200">
       <motion.div
-        className="relative w-full max-w-md p-8 bg-white rounded-lg shadow-lg"
+        className="relative w-full max-w-md p-8 bg-white border border-gray-200 rounded-2xl shadow-xl"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -100,8 +91,10 @@ function AuthPage() {
         <div className="flex justify-around mb-6 border-b border-gray-200">
           <button
             onClick={() => setIsSignUp(false)}
-            className={`flex items-center gap-2 px-4 py-2 text-sm font-semibold transition-colors duration-300 rounded-t-lg ${
-              !isSignUp ? "bg-green-400 text-white" : "text-gray-600"
+            className={`flex items-center gap-2 px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-t-lg ${
+              !isSignUp
+                ? "text-blue-600 border-b-2 border-blue-600"
+                : "text-gray-600 hover:text-blue-500"
             }`}
           >
             <FaSignInAlt />
@@ -109,8 +102,10 @@ function AuthPage() {
           </button>
           <button
             onClick={() => setIsSignUp(true)}
-            className={`flex items-center gap-2 px-4 py-2 text-sm font-semibold transition-colors duration-300 rounded-t-lg ${
-              isSignUp ? "bg-green-400 text-white" : "text-gray-600"
+            className={`flex items-center gap-2 px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-t-lg ${
+              isSignUp
+                ? "text-blue-600 border-b-2 border-blue-600"
+                : "text-gray-600 hover:text-blue-500"
             }`}
           >
             <FaUserPlus />
@@ -119,67 +114,67 @@ function AuthPage() {
         </div>
 
         <div className="relative overflow-hidden h-80">
-          {" "}
-          {/* Added height to ensure content is visible */}
+          {/* SIGN UP */}
           <motion.div
             className={`absolute inset-0 transition-transform duration-500 ${
               isSignUp ? "translate-x-0" : "translate-x-full"
             }`}
             initial={{ opacity: 0 }}
             animate={{ opacity: isSignUp ? 1 : 0 }}
-            transition={{ duration: 0.5 }}
           >
-            <h2 className="text-2xl font-bold mb-4 text-center">Sign Up</h2>
+            <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
+              Create Account
+            </h2>
             <form onSubmit={handleSignUpSubmit} className="space-y-4">
-              <div className="flex items-center border rounded-md border-gray-300 p-2 gap-3">
-                <FaUser className="text-gray-400 mr-2" />
+              <div className="flex items-center border border-gray-300 rounded-lg p-2 gap-3 focus-within:border-blue-500 transition">
+                <FaUser className="text-gray-400" />
                 <input
                   type="text"
                   name="fullname"
                   placeholder="Full Name"
                   required
-                  className="outline-none w-full"
+                  className="outline-none w-full text-gray-700"
                 />
               </div>
-              <div className="flex items-center border rounded-md border-gray-300 p-2 gap-3">
-                <FaUser className="text-gray-400 mr-2" />
+              <div className="flex items-center border border-gray-300 rounded-lg p-2 gap-3 focus-within:border-blue-500 transition">
+                <FaUser className="text-gray-400" />
                 <input
                   type="email"
                   name="email"
                   placeholder="Email"
                   required
-                  className="outline-none w-full"
+                  className="outline-none w-full text-gray-700"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
                 />
               </div>
-              <div className="flex items-center border rounded-md border-gray-300 p-2 gap-3">
-                <FaLock className="text-gray-400 mr-2" />
+              <div className="flex items-center border border-gray-300 rounded-lg p-2 gap-3 focus-within:border-blue-500 transition">
+                <FaLock className="text-gray-400" />
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="Password"
                   required
-                  className="outline-none w-full"
+                  className="outline-none w-full text-gray-700"
                   onChange={(e) => setPassword(e.target.value)}
                   value={password}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="text-gray-400 ml-2"
+                  className="text-gray-400 hover:text-blue-500"
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
               </div>
               <button
                 type="submit"
-                className="w-full bg-green-400 text-white py-2 rounded-md flex justify-center items-center"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md flex justify-center items-center font-medium transition"
               >
                 {loading ? (
-                  <Loader2 className=" animate-spin text-center" />
+                  <Loader2 className="animate-spin text-center" />
                 ) : (
-                  "Register User"
+                  "Register"
                 )}
               </button>
               {signUpError && (
@@ -189,53 +184,56 @@ function AuthPage() {
               )}
             </form>
           </motion.div>
+
+          {/* SIGN IN */}
           <motion.div
             className={`absolute inset-0 transition-transform duration-500 ${
               isSignUp ? "-translate-x-full" : "translate-x-0"
             }`}
             initial={{ opacity: 0 }}
             animate={{ opacity: !isSignUp ? 1 : 0 }}
-            transition={{ duration: 0.5 }}
           >
-            <h2 className="text-2xl font-bold mb-4 text-center">Sign In</h2>
+            <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
+              Welcome Back
+            </h2>
             <form onSubmit={handleSignInSubmit} className="space-y-4">
-              <div className="flex items-center border rounded-md border-gray-300 p-2 gap-3">
-                <FaUser className="text-gray-400 mr-2" />
+              <div className="flex items-center border border-gray-300 rounded-lg p-2 gap-3 focus-within:border-blue-500 transition">
+                <FaUser className="text-gray-400" />
                 <input
                   type="email"
                   name="email"
                   placeholder="Email"
                   required
-                  className="outline-none w-full"
+                  className="outline-none w-full text-gray-700"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
                 />
               </div>
-              <div className="flex items-center border rounded-md border-gray-300 p-2 gap-3">
-                <FaLock className="text-gray-400 mr-2" />
+              <div className="flex items-center border border-gray-300 rounded-lg p-2 gap-3 focus-within:border-blue-500 transition">
+                <FaLock className="text-gray-400" />
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="Password"
                   required
-                  className="outline-none w-full"
+                  className="outline-none w-full text-gray-700"
                   onChange={(e) => setPassword(e.target.value)}
                   value={password}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="text-gray-400 ml-2"
+                  className="text-gray-400 hover:text-blue-500"
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
               </div>
               <button
                 type="submit"
-                className="w-full bg-green-400 text-white py-2 rounded-md flex justify-center items-center"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md flex justify-center items-center font-medium transition"
               >
                 {loading ? (
-                  <Loader2 className=" animate-spin text-center" />
+                  <Loader2 className="animate-spin text-center" />
                 ) : (
                   "Login"
                 )}
@@ -255,7 +253,7 @@ function AuthPage() {
               Already have an account?{" "}
               <button
                 onClick={() => setIsSignUp(false)}
-                className="text-blue-500 hover:underline"
+                className="text-blue-600 hover:underline font-medium"
               >
                 Sign In
               </button>
@@ -265,7 +263,7 @@ function AuthPage() {
               Don’t have an account?{" "}
               <button
                 onClick={() => setIsSignUp(true)}
-                className="text-blue-500 hover:underline"
+                className="text-blue-600 hover:underline font-medium"
               >
                 Sign Up
               </button>

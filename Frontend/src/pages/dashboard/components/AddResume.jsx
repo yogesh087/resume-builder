@@ -66,7 +66,7 @@ function AddResume() {
               <Button variant="ghost" onClick={() => setOpenDialog(false)}>
                 Cancel
               </Button>
-              <Button onClick={createResume} disabled={!resumetitle || loading}>
+              <Button  className="bg-blue-600 hover:bg-blue-500 transition" onClick={createResume} disabled={!resumetitle || loading}>
                 {loading ? (
                   <Loader className=" animate-spin" />
                 ) : (

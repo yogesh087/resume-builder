@@ -64,7 +64,7 @@ function PersonalDetails({ resumeInfo, enanbledNext }) {
   };
 
   return (
-    <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
+    <div className="p-5 shadow-lg rounded-lg border-black-300 border-2 mt-10">
       <h2 className="font-bold text-lg">Personal Detail</h2>
       <p>Get Started with the basic information</p>
 

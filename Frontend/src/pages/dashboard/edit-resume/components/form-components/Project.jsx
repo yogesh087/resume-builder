@@ -86,7 +86,7 @@ function Project({ resumeInfo, setEnabledNext, setEnabledPrev }) {
   };
 
   return (
-    <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
+    <div className="p-5 shadow-lg rounded-lg border-black-300 border-2 mt-10">
       <h2 className="font-bold text-lg">Project</h2>
       <p>Add your projects</p>
       <div>
@@ -117,7 +117,7 @@ function Project({ resumeInfo, setEnabledNext, setEnabledPrev }) {
                 />
               </div>
               <div>
-                <label className="text-xs">Company Name</label>
+                <label className="text-xs">Tech Stack</label>
                 <Input
                   type="text"
                   name="techStack"
@@ -143,7 +143,7 @@ function Project({ resumeInfo, setEnabledNext, setEnabledPrev }) {
         ))}
       </div>
       <div className="flex justify-between py-2">
-        <Button onClick={addProject} variant="outline" className="text-primary">
+        <Button onClick={addProject} variant="outline" >
           + Add {resumeInfo?.experience?.length > 0 ? "more" : null} project
         </Button>
         <Button onClick={onSave}>
