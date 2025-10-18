@@ -1,0 +1,22 @@
+# Node.js dependencies
+/node_modules
+
+# Build files
+/build
+/dist
+
+# Environment variables
+.env
+ 
+# Cache
+/.cache
+
+# Dependency lock files
+/yarn.lock
+/package-lock.json
+
+ 
+
+# React specific files
+/public/build
+/public/.env
