@@ -10,6 +10,7 @@ const model = genAI.getGenerativeModel({
 });
 
 const generationConfig = {
+
   temperature: 1,
   topP: 0.95,
   topK: 64,
@@ -25,10 +26,7 @@ const safetySettings = [
     category: "HARM_CATEGORY_HATE_SPEECH",
     threshold: "BLOCK_NONE",
   },
-  {
-    category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-    threshold: "BLOCK_NONE",
-  },
+   
   {
     category: "HARM_CATEGORY_DANGEROUS_CONTENT",
     threshold: "BLOCK_NONE",
