@@ -64,15 +64,13 @@ ALLOWED_SITE=http://localhost:5173
 ---
 
 
-Improvements if Given More Time:
+## Improvements if Given More Time:
 
 Implement a dark mode and theme customization for user preference.
 
 Add analytics to track resume views and downloads.
 
 Enhance performance optimizations for large-scale user data.
-
-Improve unit and integration tests to cover all critical flows.
 
 Expand AI-powered features for resume suggestions and automated formatting.
 
