@@ -2,6 +2,8 @@
 
 AI Resume Builder is a web application that leverages artificial intelligence to help users craft professional resumes. 
 
+<img width="1866" height="897" alt="image" src="https://github.com/user-attachments/assets/4e5ffc08-50ed-4faf-9646-77235822291b" />
+
 
 ## Tech Stack
 
@@ -15,6 +17,10 @@ AI Resume Builder is a web application that leverages artificial intelligence to
 This project was developed using a modern full-stack approach, focusing on performance, scalability, and user experience. The frontend is built with React, Tailwind CSS, and Radix UI components for a clean and responsive interface. The backend is powered by Node.js with Express/NestJS and MongoDB for efficient data storage and retrieval. State management is handled using Redux, and authentication is implemented with secure JWT-based flows.
 
 ---
+
+<img width="1658" height="850" alt="image" src="https://github.com/user-attachments/assets/2c2bf623-63c9-4bb0-b83f-fc8bde86b1b8" />
+<img width="1448" height="863" alt="image" src="https://github.com/user-attachments/assets/bdf503e7-70ef-4b9a-8a2c-b986f76f2d1e" />
+
 ## Installation
 
 **Frontend Setup**
