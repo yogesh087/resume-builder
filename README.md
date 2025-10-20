@@ -36,6 +36,9 @@ This project was developed using a modern full-stack approach, focusing on perfo
     ```bash
     npm run dev
     ```
+<img width="1887" height="887" alt="ohos" src="https://github.com/user-attachments/assets/d392dc18-75c9-4cd2-9b25-2e617c3a0d70" />
+
+    
 
 **Backend Setup**
 
