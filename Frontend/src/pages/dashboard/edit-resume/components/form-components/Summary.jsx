@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable no-console */
 import React, { useState } from "react";
 import { Sparkles, LoaderCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";

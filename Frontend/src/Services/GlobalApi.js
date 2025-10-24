@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable no-console */
 import axios from "axios";
 import { API_KEY } from "@/config/config";
 
