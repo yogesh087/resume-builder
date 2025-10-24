@@ -55,7 +55,7 @@ jobs:
       # Step 7: Start services
       - name: Start services with Docker Compose
         run: |
-          docker-compose -f docker-compose.yml up -d
+          docker compose -f docker-compose.yml up -d
           sleep 10  # wait for services to start
 
 
