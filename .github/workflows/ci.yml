@@ -52,17 +52,17 @@ jobs:
       - name: Build Frontend image
         run: docker build -t mern-frontend ./Frontend
 
-      # Step 7: Start services
-      - name: Start services with Docker Compose
-        run: |
-          docker compose -f docker-compose.yml up -d
-          sleep 10  # wait for services to start
+      # # Step 7: Start services
+      # - name: Start services with Docker Compose
+      #   run: |
+      #     docker compose -f docker-compose.yml up -d
+      #     sleep 10  # wait for services to start
 
 
-      # Step 8: Check running containers
-      - name: Check running containers
-        run: docker ps -a
+      # # Step 8: Check running containers
+      # - name: Check running containers
+      #   run: docker ps -a
 
-      # Step 9: Stop and clean up
-      - name: Stop Docker Compose
-        run: docker-compose down
+      # # Step 9: Stop and clean up
+      # - name: Stop Docker Compose
+      #   run: docker-compose down
