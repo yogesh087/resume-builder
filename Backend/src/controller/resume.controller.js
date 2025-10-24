@@ -53,9 +53,9 @@ const createResume = async (req, res) => {
 const getALLResume = async (req, res) => {
   try {
     const resumes = await Resume.find({ user: req.user });
-    return res
-      .status(200)
-      .json(new ApiResponse(200, resumes, "Resumes fetched successfully"));
+    // return res
+    //   .status(200)
+    //   .json(new ApiResponse(200, resumes, "Resumes fetched successfully"));
   } catch (error) {
     console.error("Error fetching resumes:", error);
     return res
