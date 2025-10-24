@@ -24,11 +24,11 @@ jobs:
       # Step 3: Install ESLint dependencies (optional if already in package.json)
       - name: Install dependencies for Backend
         working-directory: ./Backend
-        run: npm ci
+        run: npm install
 
       - name: Install dependencies for Frontend
         working-directory: ./Frontend
-        run: npm ci
+        run: npm install
 
       # Step 4: Run ESLint checks
       - name: Run ESLint (Backend)
