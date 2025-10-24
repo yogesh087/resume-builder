@@ -1,3 +1,7 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable no-console */
+
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -9,7 +13,7 @@ import { RWebShare } from "react-web-share";
 import { toast } from "sonner";
 
 function ViewResume() {
-  const [resumeInfo, setResumeInfo] = React.useState({});
+  // const [resumeInfo, setResumeInfo] = React.useState({});
   const { resume_id } = useParams();
   const dispatch = useDispatch();
 

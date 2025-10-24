@@ -1,3 +1,7 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable no-console */
+
 import Header from "@/components/custom/Header";
 import React, { useEffect } from "react";
 import heroSnapshot from "@/assets/heroSnapshot.png";

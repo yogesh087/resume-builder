@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable no-console */
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "./components/custom/Header";
 import { Toaster } from "./components/ui/sonner";

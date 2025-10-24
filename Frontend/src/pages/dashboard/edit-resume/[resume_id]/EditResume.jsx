@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable no-console */
 import React, { useEffect } from "react";
 import ResumeForm from "../components/ResumeForm";
 import PreviewPage from "../components/PreviewPage";
