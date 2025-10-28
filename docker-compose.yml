@@ -1,16 +1,31 @@
 
 services:
+  mongo:
+    image: mongo:6
+    container_name: mongo
+    restart: always
+    volumes:
+      - mongo_data:/data/db  # volume for MongoDB data
+
+    networks:
+      - app_network
+
   backend:
     build:
       context: ./Backend
     container_name: backend
     ports:
-      - "5001:5000"
+      - "5001:5001"
     env_file:
       - ./Backend/.env
     working_dir: /app
     command: ["npm", "start"]
-    
+    depends_on:
+      - mongo  # ensure mongo starts before backend
+    volumes:
+      - ./Backend:/app  # optional: live code reload in dev mode (bind mount)
+    networks:
+        - app_network  # connect to the shared custom network
 
   frontend:
     build:
@@ -21,5 +36,51 @@ services:
     env_file:
       - ./Frontend/.env
     working_dir: /app
-    command: ["npm", "run", "dev"]
+    command: ["npm", "run", "dev", "--", "--host"]  # 👈 add this
+    depends_on:
+      - backend
+    networks:
+        - app_network  # connect to the shared custom network
+
+volumes:
+  mongo_data:  # named volume declaration
+
+
+
+
+# 👇 define the shared custom network
+networks:
+  app_network:
+    driver: bridge
+
+
+
+
+
+
+
+
+# services:
+#   backend:
+#     build:
+#       context: ./Backend
+#     container_name: backend
+#     ports:
+#       - "5001:5000"
+#     env_file:
+#       - ./Backend/.env
+#     working_dir: /app
+#     command: ["npm", "start"]
+    
+
+#   frontend:
+#     build:
+#       context: ./Frontend
+#     container_name: frontend
+#     ports:
+#       - "5173:5173"
+#     env_file:
+#       - ./Frontend/.env
+#     working_dir: /app
+#     command: ["npm", "run", "dev"]
     
