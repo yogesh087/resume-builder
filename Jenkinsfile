@@ -18,47 +18,31 @@ pipeline {
             }
         }
 
-        stage('Prepare Environment') {
-            steps {
-                sh '''
-                echo "Preparing environment..."
-                export PORT=$PORT
-                export MONGO_URI=$MONGO_URI
-                export VITE_API_URL=$VITE_API_URL
-                export FRONTEND_PORT=$FRONTEND_PORT
-                '''
-            }
-        }
+       stage('Prepare Environment') {
+    steps {
+        bat '''
+        echo Preparing environment...
+        set PORT=%PORT%
+        set MONGO_URI=%MONGO_URI%
+        '''
+    }
+}
 
-        stage('Build Docker Images') {
-            steps {
-                script {
-                    // Backend build
-                    sh """
-                    docker build \
-                    -t $BACKEND_IMAGE:latest \
-                    --build-arg PORT=$PORT \
-                    --build-arg MONGO_URI=$MONGO_URI \
-                    ./Backend
-                    """
-
-                    // Frontend build
-                    sh """
-                    docker build \
-                    -t $FRONTEND_IMAGE:latest \
-                    --build-arg VITE_API_URL=$VITE_API_URL \
-                    --build-arg FRONTEND_PORT=$FRONTEND_PORT \
-                    ./Frontend
-                    """
-                }
-            }
+stage('Build Docker Images') {
+    steps {
+        script {
+            bat "docker build -t %BACKEND_IMAGE%:latest ./Backend"
+            bat "docker build -t %FRONTEND_IMAGE%:latest ./Frontend"
         }
+    }
+}
 
-        stage('Deploy Locally') {
-            steps {
-                sh 'docker-compose down || true'
-                sh 'docker-compose up -d'
-            }
-        }
+stage('Deploy Locally') {
+    steps {
+        bat "docker-compose down || exit 0"
+        bat "docker-compose up -d"
+    }
+}
+
     }
 }
