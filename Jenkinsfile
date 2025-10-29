@@ -2,37 +2,54 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_USER = 'your_dockerhub_username'
+        // Global environment variables
         BACKEND_IMAGE = 'mern-backend'
         FRONTEND_IMAGE = 'mern-frontend'
+        PORT = '5001'
+        MONGO_URI = 'mongodb://mongo:27017/resume-builder'
+        FRONTEND_PORT = '5173'
+        VITE_API_URL = 'http://localhost:5001' // 👈 Example for frontend
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/yourusername/yourrepo.git'
+                git branch: 'main', url: 'https://github.com/yogesh087/resume-builder.git'
+            }
+        }
+
+        stage('Prepare Environment') {
+            steps {
+                sh '''
+                echo "Preparing environment..."
+                export PORT=$PORT
+                export MONGO_URI=$MONGO_URI
+                export VITE_API_URL=$VITE_API_URL
+                export FRONTEND_PORT=$FRONTEND_PORT
+                '''
             }
         }
 
         stage('Build Docker Images') {
             steps {
                 script {
-                    sh 'docker build -t $DOCKER_HUB_USER/$BACKEND_IMAGE:latest ./Backend'
-                    sh 'docker build -t $DOCKER_HUB_USER/$FRONTEND_IMAGE:latest ./Frontend'
-                }
-            }
-        }
+                    // Backend build
+                    sh """
+                    docker build \
+                    -t $BACKEND_IMAGE:latest \
+                    --build-arg PORT=$PORT \
+                    --build-arg MONGO_URI=$MONGO_URI \
+                    ./Backend
+                    """
 
-        stage('Push to Docker Hub') {
-            steps {
-                script {
-                    withCredentials([string(credentialsId: 'dockerhub-token', variable: 'DOCKER_TOKEN')]) {
-                        sh """
-                        echo $DOCKER_TOKEN | docker login -u $DOCKER_HUB_USER --password-stdin
-                        docker push $DOCKER_HUB_USER/$BACKEND_IMAGE:latest
-                        docker push $DOCKER_HUB_USER/$FRONTEND_IMAGE:latest
-                        """
-                    }
+                    // Frontend build
+                    sh """
+                    docker build \
+                    -t $FRONTEND_IMAGE:latest \
+                    --build-arg VITE_API_URL=$VITE_API_URL \
+                    --build-arg FRONTEND_PORT=$FRONTEND_PORT \
+                    ./Frontend
+                    """
                 }
             }
         }
