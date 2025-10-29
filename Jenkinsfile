@@ -24,6 +24,8 @@ pipeline {
         echo Preparing environment...
         set PORT=%PORT%
         set MONGO_URI=%MONGO_URI%
+        set VITE_API_URL=%VITE_API_URL%
+        echo Environment variables set.
         '''
     }
 }
