@@ -109,7 +109,7 @@ const loginUser = async (req, res) => {
     const cookieOptions = {
       httpOnly: true,
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // Set cookie to expire in 1 day
-      sameSite: process.env.NODE_ENV == "Dev" ? "lax" : "none", // Set SameSite attribute for better security
+      sameSite: process.env.NODE_ENV == "Dev" ? "none" : "lax", // Set SameSite attribute for better security
       secure: process.env.NODE_ENV == "Dev" ? false : true, // Set Secure attribute for better security
     };
     
