@@ -16,6 +16,7 @@ function App() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.editUser.userData);
   const dispatch = useDispatch();
+  const resume = useSelector((state) => state.editResume.resumeData);
 
   useEffect(() => {
     const fetchResponse = async () => {
